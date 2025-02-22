@@ -165,6 +165,12 @@ set_other_groups()
       return
    fi
 
+   if [[ "$1" =~ "PASS" ]]; then
+      set_group=1
+      echo "      - PASS" >>$GROUP_FILE
+      return
+   fi
+
    config_foreach add_other_group "groups" "$1" "$2" #比对策略组
 }
 
