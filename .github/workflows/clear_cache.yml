@@ -1,15 +1,16 @@
 name: Clean jsDelivr Cache
 
 on: 
-  push:
-    branches: 
-      - master
-      - dev
-      - core
-      - package
-    paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
+  #push:
+  #  branches: 
+  #    - master
+  #    - dev
+  #    - core
+  #    - package
+  #  paths-ignore:
+  #    - 'README.md'
+  #    - 'LICENSE'
+  workflow_dispatch:
 
 jobs:
   jsDelivr:
