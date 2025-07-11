@@ -2,11 +2,11 @@
 name: Compile The New Version OpenClash
 
 on: 
-  push:
-    branches:
-      - dev
-    paths:
-      - 'luci-app-openclash/Makefile'
+  #push:
+  #  branches:
+  #    - dev
+  #  paths:
+  #    - 'luci-app-openclash/Makefile'
   workflow_dispatch:
 
 jobs:
