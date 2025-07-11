@@ -1,8 +1,8 @@
 name: Update Third-Party Resources
 
 on:
-  schedule:
-    - cron: '30 0 */3 * *'
+  #schedule:
+  #  - cron: '30 0 */3 * *'
   workflow_dispatch:
   
 jobs:

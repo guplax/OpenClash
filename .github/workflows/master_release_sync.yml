@@ -1,8 +1,8 @@
 name: Sync Core and Package to Master When release
 on:
-  push:
-    tags:
-      - "v*"
+  #push:
+  #  tags:
+  #    - "v*"
   workflow_dispatch:
   
 jobs:
