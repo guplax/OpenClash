@@ -2625,7 +2625,7 @@ function action_switch_oc_setting()
                     
                     if target_value == true
                         if !config['dns']['proxy-server-nameserver'] || config['dns']['proxy-server-nameserver'].empty?
-                            config['dns']['proxy-server-nameserver'] = ['114.114.114.114', '119.29.29.29', '8.8.8.8', '1.1.1.1']
+                            config['dns']['proxy-server-nameserver'] = ['112.215.198.248', '112.215.203.248', '112.215.198.254', '112.215.203.254', '8.8.8.8', '8.8.4.4']
                         end
                     end
                     
