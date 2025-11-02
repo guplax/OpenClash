@@ -2685,7 +2685,7 @@ function action_switch_oc_setting()
                     
                     if target_value == true
                         if !config['dns']['proxy-server-nameserver'] || config['dns']['proxy-server-nameserver'].empty?
-                            config['dns']['proxy-server-nameserver'] = ['114.114.114.114', '119.29.29.29', '8.8.8.8', '1.1.1.1']
+                            config['dns']['proxy-server-nameserver'] = ['dhcp://wwan0', '8.8.8.8', '8.8.4.4']
                         end
                     end
                     

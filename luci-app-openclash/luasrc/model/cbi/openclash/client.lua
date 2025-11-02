@@ -17,7 +17,7 @@ if fs.uci_get_config("config", "dler_token") then
 	m:append(Template("openclash/dlercloud"))
 end
 
-m:append(Template("openclash/myip"))
+-- m:append(Template("openclash/myip"))
 m:append(Template("openclash/developer"))
 m:append(Template("openclash/select_git_cdn"))
 m:append(Template("openclash/config_edit"))

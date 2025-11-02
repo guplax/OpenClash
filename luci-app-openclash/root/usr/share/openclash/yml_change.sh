@@ -692,23 +692,23 @@ begin
    # proxy-server-nameserver
    local_exclude = (%x{ls -l /sys/class/net/ |awk '{print \$9}'  2>&1}.each_line.map(&:strip) + ['h3=', 'skip-cert-verify=', 'ecs=', 'ecs-override='] + ['utun', 'tailscale0', 'docker0', 'tun163', 'br-lan', 'mihomo']).uniq.join('|')
    proxied_server_reg = /^[^#&]+#(?:(?:#{local_exclude})[^&]*&)*(?:(?!(?:#{local_exclude}))[^&]+)/
-   default_proxy_servers = ['114.114.114.114', '119.29.29.29', '8.8.8.8', '1.1.1.1']
+   default_proxy_servers = ['dhcp://wwan0', '8.8.8.8', '8.8.4.4']
 
    if Value.dig('dns', 'proxy-server-nameserver').to_a.empty?
       all_ns_proxied = Value.dig('dns', 'nameserver').to_a.all? { |x| x.match?(proxied_server_reg) }
       if respect_rules || Value.dig('dns', 'respect-rules').to_s == 'true' || all_ns_proxied
          Value['dns']['proxy-server-nameserver'] = default_proxy_servers
          if all_ns_proxied
-            YAML.LOG('Tip: Nameserver Option Maybe All Setted The Proxy Option, Auto Set Proxy-server-nameserver Option to【114.114.114.114, 119.29.29.29, 8.8.8.8, 1.1.1.1】For Avoiding Proxies Server Resolve Loop...')
+            YAML.LOG('Tip: Nameserver Option Maybe All Setted The Proxy Option, Auto Set Proxy-server-nameserver Option to【dhcp://wwan0, 8.8.8.8, 8.8.4.4】For Avoiding Proxies Server Resolve Loop...')
          else
-            YAML.LOG('Tip: Respect-rules Option Need Proxy-server-nameserver Option Must Be Setted, Auto Set to【114.114.114.114, 119.29.29.29, 8.8.8.8, 1.1.1.1】')
+            YAML.LOG('Tip: Respect-rules Option Need Proxy-server-nameserver Option Must Be Setted, Auto Set to【dhcp://wwan0, 8.8.8.8, 8.8.4.4】')
          end
       end
    else
       all_psn_proxied = Value.dig('dns', 'proxy-server-nameserver').to_a.all? { |x| x.match?(proxied_server_reg) }
       if all_psn_proxied
          (Value['dns']['proxy-server-nameserver'] ||= []).concat(default_proxy_servers).uniq!
-         YAML.LOG('Tip: Proxy-server-nameserver Option Maybe All Setted The Proxy Option, Auto Set Proxy-server-nameserver Option to【114.114.114.114, 119.29.29.29, 8.8.8.8, 1.1.1.1】For Avoiding Proxies Server Resolve Loop...')
+         YAML.LOG('Tip: Proxy-server-nameserver Option Maybe All Setted The Proxy Option, Auto Set Proxy-server-nameserver Option to【dhcp://wwan0, 8.8.8.8, 8.8.4.4】For Avoiding Proxies Server Resolve Loop...')
       end
    end
 
